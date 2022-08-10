@@ -1,9 +1,9 @@
 from django.db import models
 from django_tenants.models import TenantMixin, DomainMixin
-from tenant_users.tenants.models import TenantBase
+# from tenant_users.tenants.models import TenantBase
 
 
-class Client(TenantBase):
+class Client(TenantMixin):
     name = models.CharField(max_length=100)
     description = models.TextField()
 

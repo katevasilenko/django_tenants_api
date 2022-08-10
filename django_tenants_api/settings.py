@@ -33,7 +33,6 @@ ALLOWED_HOSTS = []
 SHARED_APPS = [
     'django_tenants',
     'tenant',
-    'users',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -41,26 +40,26 @@ SHARED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    'tenant_users.permissions',
-    'tenant_users.tenants'
+    'restaurant_shared'
 ]
-"""
-    These app's data are stored on their specific schemas
-"""
+
 TENANT_APPS = [
-    # The following Django contrib apps must be in TENANT_APPS
     'django.contrib.contenttypes',
     'django.contrib.auth',
     'django.contrib.admin',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'tenant_users.permissions',
+    'django.contrib.staticfiles',
+    'restaurant_tenant'
 ]
 
 INSTALLED_APPS = list(SHARED_APPS) + [
     app for app in TENANT_APPS if app not in SHARED_APPS
 ]
+
+TENANT_MODEL = "tenant.Client"
+
+TENANT_DOMAIN_MODEL = "tenant.Domain"
 
 MIDDLEWARE = [
     'django_tenants.middleware.main.TenantMainMiddleware',
@@ -74,6 +73,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'django_tenants_api.urls'
+PUBLIC_SCHEMA_URLCONF = 'restaurant_shared.urls_public'
 
 TEMPLATES = [
     {
@@ -112,15 +112,6 @@ DATABASES = {
 DATABASE_ROUTERS = (
     'django_tenants.routers.TenantSyncRouter',
 )
-
-AUTH_USER_MODEL = 'users.TenantUser'
-
-TENANT_MODEL = "tenant.Client"
-
-TENANT_DOMAIN_MODEL = "tenant.Domain"
-
-TENANT_USERS_DOMAIN = "restaurants.com"
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -162,3 +153,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+SHOW_PUBLIC_IF_NO_TENANT_FOUND = True
