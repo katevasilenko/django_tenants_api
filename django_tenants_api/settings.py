@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 SHARED_APPS = [
     'django_tenants',
+    'rest_framework',
     'tenant',
 
     'django.contrib.admin',
@@ -50,6 +51,7 @@ TENANT_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'restaurant_tenant'
 ]
 
