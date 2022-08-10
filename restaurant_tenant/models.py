@@ -25,11 +25,7 @@ class Category(models.Model):
 
 class Menu(models.Model):
     content = models.TextField()
-    restaurant = models.ForeignKey(
-        Restaurant,
-        unique=True,
-        on_delete=models.CASCADE
-    )
+    restaurant = models.ForeignKey(Restaurant, unique=True, on_delete=models.CASCADE)
     categories = models.ManyToManyField(Category, related_name="menus")
 
     def __str__(self):
