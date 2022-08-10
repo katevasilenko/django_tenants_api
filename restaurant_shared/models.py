@@ -1,21 +1,13 @@
 from django.db import models
 
 
-class RestaurantPublic(models.Model):
+class Restaurant(models.Model):
     name = models.CharField(max_length=255)
     type = models.CharField(max_length=255)
-    description = models.TextField()
+    description = models.TextField(null=True, blank=True)
 
-
-class Menu(models.Model):
-    content = models.TextField()
-    categories = models.ManyToManyField('Category')
-    restaurant = models.ForeignKey(
-        RestaurantPublic,
-        on_delete=models.CASCADE,
-        blank=True,
-        default=''
-    )
+    def __str__(self):
+        return self.name
 
 
 class Category(models.Model):
@@ -24,6 +16,28 @@ class Category(models.Model):
     class Meta:
         verbose_name_plural = "categories"
 
+    def __str__(self):
+        return self.name
+
 
 class Product(models.Model):
     name = models.CharField(max_length=255)
+    description = models.TextField(null=True, blank=True)
+    price = models.FloatField()
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
+
+
+class Menus(models.Model):
+    content = models.TextField()
+    restaurant = models.ForeignKey(
+        Restaurant,
+        unique=True,
+        on_delete=models.CASCADE
+    )
+    categories = models.ManyToManyField(Category, related_name="menus")
+
+    def __str__(self):
+        return f"Menu of {self.restaurant}"

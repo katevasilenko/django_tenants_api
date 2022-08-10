@@ -1,13 +1,7 @@
 from django.contrib import admin
 
-from restaurant_tenant.models import Restaurant, Menu
+from restaurant_tenant.models import Menu, Item, Category
 
-
-@admin.register(Restaurant)
-class RestaurantAdmin(admin.ModelAdmin):
-    list_display = ('name', 'description')
-
-
-@admin.register(Menu)
-class MenuAdmin(admin.ModelAdmin):
-    list_display = ('content', 'categories')
+admin.site.register(Item)
+admin.site.register(Category)
+admin.site.register(Menu)

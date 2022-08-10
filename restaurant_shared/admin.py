@@ -1,13 +1,8 @@
 from django.contrib import admin
 
-from restaurant_shared.models import RestaurantPublic, Menu
+from restaurant_shared.models import Restaurant, Menus, Category, Product
 
-
-@admin.register(RestaurantPublic)
-class RestaurantTPublicAdmin(admin.ModelAdmin):
-    list_display = ('name', 'type', 'description')
-
-
-@admin.register(Menu)
-class MenuAdmin(admin.ModelAdmin):
-    list_display = ('content',)
+admin.site.register(Restaurant)
+admin.site.register(Category)
+admin.site.register(Product)
+admin.site.register(Menus)
