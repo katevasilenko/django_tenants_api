@@ -26,7 +26,7 @@ class Category(models.Model):
 class Menu(models.Model):
     content = models.TextField()
     restaurant = models.ForeignKey(Restaurant, unique=True, on_delete=models.CASCADE)
-    categories = models.ManyToManyField(Category, related_name="menus")
+    categories = models.ManyToManyField(Category, related_name="menu")
 
     def __str__(self):
         return f"Menu of {self.restaurant}"

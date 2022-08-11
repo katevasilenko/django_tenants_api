@@ -1,5 +1,9 @@
 asgiref==3.5.2
 Django==4.1
+django-rest-framework==0.1.0
+django-tenant-users==1.0.0
 django-tenants==3.4.4
+djangorestframework==3.13.1
 psycopg2==2.9.3
+pytz==2022.1
 sqlparse==0.4.2
