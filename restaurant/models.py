@@ -1,6 +1,6 @@
 from django.db import models
 
-from restaurant_shared.models import Restaurant
+from tenant.models import Restaurant
 
 
 class Item(models.Model):

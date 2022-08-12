@@ -41,7 +41,6 @@ SHARED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'restaurant_shared'
 ]
 
 TENANT_APPS = [
@@ -52,14 +51,14 @@ TENANT_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'restaurant_tenant'
+    'restaurant'
 ]
 
 INSTALLED_APPS = list(SHARED_APPS) + [
     app for app in TENANT_APPS if app not in SHARED_APPS
 ]
 
-TENANT_MODEL = "tenant.Client"
+TENANT_MODEL = "tenant.Restaurant"
 
 TENANT_DOMAIN_MODEL = "tenant.Domain"
 
@@ -75,7 +74,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'django_tenants_api.urls'
-PUBLIC_SCHEMA_URLCONF = 'restaurant_shared.urls_public'
+PUBLIC_SCHEMA_URLCONF = 'django_tenants_api.urls_public'
 
 TEMPLATES = [
     {
@@ -103,7 +102,7 @@ WSGI_APPLICATION = 'django_tenants_api.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django_tenants.postgresql_backend',
-        'NAME': 'saasy',
+        'NAME': 'saas',
         'USER': 'postgres',
         'PASSWORD': 'secretpass',
         'HOST': 'localhost',
